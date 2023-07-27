@@ -18,8 +18,8 @@ from __future__ import print_function
 import logging
 
 import grpc
-import helloworld_pb2
-import helloworld_pb2_grpc
+import rpc_hello_pb2
+import rpc_hello_pb2_grpc
 
 
 def run():
@@ -28,8 +28,8 @@ def run():
     # of the code.
     print("Will try to greet world ...")
     with grpc.insecure_channel('localhost:50051') as channel:
-        stub = helloworld_pb2_grpc.GreeterStub(channel)
-        response = stub.SayHello(helloworld_pb2.HelloRequest(name='you'))
+        stub = rpc_hello_pb2_grpc.GreeterStub(channel)
+        response = stub.SayHello(rpc_hello_pb2.HelloRequest(name='you'))
     print("Greeter client received: " + response.message)
 
 

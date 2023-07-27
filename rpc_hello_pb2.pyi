@@ -7,11 +7,11 @@ DESCRIPTOR: _descriptor.FileDescriptor
 class HelloRequest(_message.Message):
     __slots__ = ["name"]
     NAME_FIELD_NUMBER: _ClassVar[int]
-    name: bytes
-    def __init__(self, name: _Optional[bytes] = ...) -> None: ...
+    name: str
+    def __init__(self, name: _Optional[str] = ...) -> None: ...
 
 class HelloReply(_message.Message):
     __slots__ = ["message"]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
-    message: bytes
-    def __init__(self, message: _Optional[bytes] = ...) -> None: ...
+    message: str
+    def __init__(self, message: _Optional[str] = ...) -> None: ...
