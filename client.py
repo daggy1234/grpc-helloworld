@@ -66,7 +66,7 @@ def run():
                 response = stub.SayHello(rpc_hello_pb2.HelloRequest(name=req_str))
                 end  = time.time()
                 diff = end - start
-                time_l.append([str(i), diff])
+                time_l.append([diff])
             with open(f"./data/mrpc_data_{length}.csv", "w") as f:
                 csvwriter = csv.writer(f)
                 csvwriter.writerows(time_l)
