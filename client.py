@@ -20,6 +20,8 @@ import logging
 import grpc
 import rpc_hello_pb2
 import rpc_hello_pb2_grpc
+import time
+import csv
 
 
 def run():
@@ -27,10 +29,19 @@ def run():
     # used in circumstances in which the with statement does not fit the needs
     # of the code.
     print("Will try to greet world ...")
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel('172.31.27.226:50051') as channel:
         stub = rpc_hello_pb2_grpc.GreeterStub(channel)
-        response = stub.SayHello(rpc_hello_pb2.HelloRequest(name='you'))
+        time_l = []
+        for i in range(3000):
+          start = time.time()
+          response = stub.SayHello(rpc_hello_pb2.HelloRequest(name=f'test message number {i}'))
+          end  = time.time()
+          diff = end - start
+          time_l.append([str(i), diff])
     print("Greeter client received: " + response.message)
+    with open("grpc_data.csv", "w") as f:
+        csvwriter = csv.writer(f)
+        csvwriter.writerows(time_l)
 
 
 if __name__ == '__main__':
